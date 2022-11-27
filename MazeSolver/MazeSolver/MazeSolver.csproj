@@ -54,6 +54,8 @@
     <Compile Include="UserInterface\MazeUI.Designer.cs">
       <DependentUpon>MazeUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utility\MazeChangedHandler.cs" />
+    <Compile Include="Utility\MazeProblemSolver.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
