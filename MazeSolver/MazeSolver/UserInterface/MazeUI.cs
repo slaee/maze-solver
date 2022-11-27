@@ -208,7 +208,6 @@ namespace MazeSolver.UserInterface
             {
                 this._mazeBoard[xRnd.Next(0, this._mazeRowDimensions), yRnd.Next(0, this._mazeColDimensions)] = xRnd.Next(0, 2);
             }
-            this._mazeBoard[this._selectedX, this._selectedY] = 0;
             this.Refresh();
         }
 
