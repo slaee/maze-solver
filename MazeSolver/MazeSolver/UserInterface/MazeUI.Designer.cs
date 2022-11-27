@@ -20,7 +20,8 @@ namespace MazeSolver.UserInterface
 
         private RadioButton _drawWallsRadioButton;
         private RadioButton _findPathRadioButton;
-        
+
+        private Button _generateWallsButton;
         private Button _resetButton;
         private Button _aboutButton;
         private Button _exitButton;
@@ -64,6 +65,7 @@ namespace MazeSolver.UserInterface
             this._resetButton = new Button();
             this._aboutButton = new Button();
             this._exitButton = new Button();
+            this._generateWallsButton = new Button();
             
             ((ISupportInitialize) this._mazeContainer).BeginInit();
             this._actionContainer.SuspendLayout();
@@ -75,8 +77,8 @@ namespace MazeSolver.UserInterface
             this._mazeContainer.Size = new Size(403, 336);
             this._mazeContainer.TabIndex = 0;
             this._mazeContainer.TabStop = false;
-            this._mazeContainer.MouseMove += new MouseEventHandler(this.OnMazeContainerMouseMove);
-            this._mazeContainer.MouseDown += new MouseEventHandler(this.OnMazeContainerMouseDown);
+            this._mazeContainer.MouseMove += new MouseEventHandler(this.OnMouseMoveMazeContainer);
+            this._mazeContainer.MouseDown += new MouseEventHandler(this.OnMouseDownMazeContainer);
             this._mazeContainer.Paint += new PaintEventHandler(this.OnPaintMazeContainer);
             
             this._labelPath.Font = new Font("Microsoft Sans Serif", 8.25f, FontStyle.Regular, GraphicsUnit.Point, (byte)0);
@@ -137,25 +139,32 @@ namespace MazeSolver.UserInterface
             this._exitButton.TabIndex = 8;
             this._exitButton.Text = "E&xit";
             this._exitButton.Click += new EventHandler(this.OnClickExitButton);
-            
-            this._allowDiagonalCheckBox.Location = new Point(472, 144);
+
+            this._generateWallsButton.Location = new Point(472, 155);
+            this._generateWallsButton.Name = "cmdGenerateWalls";
+            this._generateWallsButton.Size = new Size(104, 24);
+            this._generateWallsButton.TabIndex = 5;
+            this._generateWallsButton.Text = "&Generate Walls";
+            this._generateWallsButton.Click += new EventHandler(this.OnClickGenerateMazeWalls);
+
+            this._allowDiagonalCheckBox.Location = new Point(480, 124);
             this._allowDiagonalCheckBox.Name = "chkDiagonal";
             this._allowDiagonalCheckBox.Size = new Size(112, 24);
             this._allowDiagonalCheckBox.TabIndex = 9;
             this._allowDiagonalCheckBox.Text = "Allow Diagonals";
             this._allowDiagonalCheckBox.CheckedChanged += new EventHandler(this.OnCheckChangedAllowDiagonal);
             
-       
             this.Controls.Add((Control)this._allowDiagonalCheckBox);
             this.Controls.Add((Control)this._exitButton);
             this.Controls.Add((Control)this._aboutButton);
             this.Controls.Add((Control)this._resetButton);
+            this.Controls.Add((Control)this._generateWallsButton);
             this.Controls.Add((Control)this._labelPathCaption);
             this.Controls.Add((Control)this._actionContainer);
             this.Controls.Add((Control)this._labelPath);
             this.Controls.Add((Control)this._mazeContainer);
 
-            this.Load += new EventHandler(this.OnMazeUILoad);
+            this.Load += new EventHandler(this.OnLoadMazeUI);
             ((ISupportInitialize)this._mazeContainer).EndInit();
             this._actionContainer.ResumeLayout(false);
             this.ResumeLayout(false);
